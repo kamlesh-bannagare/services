@@ -42,7 +42,8 @@ const Service = (data) => {
             <CardHeader
                 avatar={
                     <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-                        R
+                        {/* R */}
+                        {data.title[0].toUpperCase()}
                     </Avatar>
                 }
                 action={
@@ -56,7 +57,7 @@ const Service = (data) => {
             <CardMedia
                 component="img"
                 height="194"
-              style={{borderRadius:20}}
+                style={{ borderRadius: 20 }}
                 image={data.image}
                 alt="Paella dish"
             />
