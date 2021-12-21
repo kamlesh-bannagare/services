@@ -43,7 +43,7 @@ const FormService = (props) => {
 
     const imageChangedHandler = (events) => {
         setForm((prevState) => {
-            return { ...prevState, userImage: events.target.value }
+            return { ...prevState, userImage:URL.createObjectURL(events.target.files[0])  }
         })
 
     }
@@ -92,7 +92,7 @@ const FormService = (props) => {
 
             <label htmlFor="contained-button-file">
                 <Input accept="image/*" id="contained-button-file" multiple type="file" onChange={imageChangedHandler} />
-                <Button tyoe="submit" variant="contained" component="span">
+                <Button type="submit" variant="contained" component="span">
                     Upload Image
                 </Button>
             </label>
