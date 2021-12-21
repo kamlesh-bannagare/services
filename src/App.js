@@ -1,8 +1,13 @@
-import {useState} from 'react';
+import { useState } from 'react';
+import { Routes, Route } from "react-router-dom";
 import Container from '@mui/material/Container';
 import Service from './Service/Service'
 import Grid from '@mui/material/Grid';
 import NewService from './Service/NewService/NewService'
+import NavBar from './components/NavBar'
+import Home from './components/Home';
+import AboutUs from './components/AboutUs';
+import ContactUs from './components/ContactUs'
 
 let services_data = [
   {
@@ -29,21 +34,32 @@ let services_data = [
 ]
 
 function App() {
-  const [services, setServices]=useState(services_data)
+  const [services, setServices] = useState(services_data)
   const addServiceHandler = (data) => {
     // services.push(data)
-     setServices((prevState) => { return [...services,data]})
-  
+    setServices((prevState) => { return [...services, data] })
+
   }
 
   return (
     <div className="App">
+
       <Container fixed>
-        <NewService onAddService={addServiceHandler} />
+        <NavBar />
+
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="aboutus" element={<AboutUs />} />
+          <Route path="contactus" element={<ContactUs />} />
+          <Route path="addservice" element={<NewService onAddService={addServiceHandler} />} />
+        </Routes>
+
+
+        {/* <NewService onAddService={addServiceHandler} /> */}
 
         <Grid container spacing={2}>
           {
-            services.map((service,i) => <Grid key={i} item lg={4} md={6}>
+            services.map((service, i) => <Grid key={i} item lg={4} md={6}>
               <Service title={service.title}
                 image={service.image}
                 amount={service.amount}
@@ -61,7 +77,9 @@ function App() {
             <Service title={services[2].title} image={services[2].image} amount={services[2].amount} date={services[2].date} />
           </Grid> */}
         </Grid>
+
       </Container>
+
     </div>
   );
 }
